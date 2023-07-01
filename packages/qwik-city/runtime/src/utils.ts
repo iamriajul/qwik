@@ -1,6 +1,5 @@
 import type { RouteActionValue, SimpleURL } from './types';
 
-import type { LinkProps } from './link-component';
 import { QACTION_KEY } from './constants';
 
 /** Gets an absolute url path string (url.pathname + url.search + url.hash) */
@@ -56,12 +55,8 @@ export const getClientNavPath = (props: Record<string, any>, baseUrl: { url: URL
   return null;
 };
 
-export const getPrefetchDataset = (
-  props: LinkProps,
-  clientNavPath: string | null,
-  currentLoc: { url: URL }
-) => {
-  if (props.prefetch === true && clientNavPath) {
+export const getPrefetchDataset = (clientNavPath: string | null, currentLoc: { url: URL }) => {
+  if (clientNavPath) {
     const prefetchUrl = toUrl(clientNavPath, currentLoc.url);
     const currentUrl = toUrl('', currentLoc.url);
     if (!isSamePathname(prefetchUrl, currentUrl) || !isSameSearchQuery(prefetchUrl, currentUrl)) {
