@@ -52,9 +52,10 @@ export const loadClientData = async (
           if (clientData.redirect) {
             location.href = clientData.redirect;
           } else if (opts?.action) {
-            const actionData = clientData.loaders[opts.action.id];
+            const { action } = opts;
+            const actionData = clientData.loaders[action.id];
             resolveFn = () => {
-              opts.action.resolve!({ status: rsp.status, result: actionData });
+              action!.resolve!({ status: rsp.status, result: actionData });
             };
           }
           return clientData;
