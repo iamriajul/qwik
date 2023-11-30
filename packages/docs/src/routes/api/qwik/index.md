@@ -34,6 +34,34 @@ $: <T>(expression: T) => QRL<T>;
 
 [Edit this section](https://github.com/BuilderIO/qwik/tree/main/packages/qwik/src/core/qrl/qrl.public.ts)
 
+## $$
+
+> This API is provided as an alpha preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
+
+Extract function into a synchronously loadable QRL.
+
+NOTE: Synchronous QRLs functions can't close over any variables, including exports.
+
+```typescript
+$$: <T extends Function>(fn: T) => SyncQRL<T>;
+```
+
+[Edit this section](https://github.com/BuilderIO/qwik/tree/main/packages/qwik/src/core/qrl/qrl.public.ts)
+
+## $Qrl
+
+> This API is provided as an alpha preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
+
+Extract function into a synchronously loadable QRL.
+
+NOTE: Synchronous QRLs functions can't close over any variables, including exports.
+
+```typescript
+$Qrl: <TYPE extends Function>(fn: TYPE, serializedFn?: string) => SyncQRL<TYPE>;
+```
+
+[Edit this section](https://github.com/BuilderIO/qwik/tree/main/packages/qwik/src/core/qrl/qrl.public.ts)
+
 ## AnchorHTMLAttributes
 
 ```typescript

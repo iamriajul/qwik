@@ -68,6 +68,34 @@
       "mdFile": "qwik._.md"
     },
     {
+      "name": "$$",
+      "id": "__",
+      "hierarchy": [
+        {
+          "name": "$$",
+          "id": "__"
+        }
+      ],
+      "kind": "Variable",
+      "content": "> This API is provided as an alpha preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.\n> \n\nExtract function into a synchronously loadable QRL.\n\nNOTE: Synchronous QRLs functions can't close over any variables, including exports.\n\n\n```typescript\n$$: <T extends Function>(fn: T) => SyncQRL<T>\n```",
+      "editUrl": "https://github.com/BuilderIO/qwik/tree/main/packages/qwik/src/core/qrl/qrl.public.ts",
+      "mdFile": "qwik.__.md"
+    },
+    {
+      "name": "$Qrl",
+      "id": "_qrl",
+      "hierarchy": [
+        {
+          "name": "$Qrl",
+          "id": "_qrl"
+        }
+      ],
+      "kind": "Variable",
+      "content": "> This API is provided as an alpha preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.\n> \n\nExtract function into a synchronously loadable QRL.\n\nNOTE: Synchronous QRLs functions can't close over any variables, including exports.\n\n\n```typescript\n$Qrl: <TYPE extends Function>(fn: TYPE, serializedFn?: string) => SyncQRL<TYPE>\n```",
+      "editUrl": "https://github.com/BuilderIO/qwik/tree/main/packages/qwik/src/core/qrl/qrl.public.ts",
+      "mdFile": "qwik._qrl.md"
+    },
+    {
       "name": "AnchorHTMLAttributes",
       "id": "anchorhtmlattributes",
       "hierarchy": [

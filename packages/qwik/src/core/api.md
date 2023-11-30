@@ -6,8 +6,16 @@
 
 import * as CSS_2 from 'csstype';
 
+// Warning: (ae-forgotten-export) The symbol "SyncQRL" needs to be exported by the entry point index.d.ts
+//
+// @alpha
+export const $$: <T extends Function>(fn: T) => SyncQRL<T>;
+
 // @public
 export const $: <T>(expression: T) => QRL<T>;
+
+// @alpha
+export const $Qrl: <TYPE extends Function>(fn: TYPE, serializedFn?: string) => SyncQRL<TYPE>;
 
 // @public (undocumented)
 export interface AnchorHTMLAttributes<T extends Element> extends HTMLAttributes<T> {

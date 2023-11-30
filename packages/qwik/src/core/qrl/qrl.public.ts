@@ -1,7 +1,7 @@
 import { implicit$FirstArg } from '../util/implicit_dollar';
 import { qDev, qRuntimeQrl } from '../util/qdev';
 import type { QRLDev } from './qrl';
-import { createQRL } from './qrl-class';
+import { SYNC_QRL, createQRL } from './qrl-class';
 
 // <docs markdown="../readme.md#QRL">
 // !!DO NOT EDIT THIS COMMENT DIRECTLY!!!
@@ -271,3 +271,64 @@ export const eventQrl = <T>(qrl: QRL<T>): QRL<T> => {
 
 /** @public */
 export const event$ = implicit$FirstArg(eventQrl);
+
+export interface SyncQRL<TYPE extends Function = any> extends QRL<TYPE> {
+  __brand__SyncQRL__: TYPE;
+
+  /**
+   * Resolve the QRL of closure and invoke it.
+   *
+   * @param args - Closure arguments.
+   * @returns A return value of the closure.
+   */
+  (
+    ...args: TYPE extends (...args: infer ARGS) => any ? ARGS : never
+  ): TYPE extends (...args: any[]) => infer RETURN ? RETURN : never;
+
+  resolved: TYPE;
+  dev: QRLDev | null;
+}
+
+/**
+ * Extract function into a synchronously loadable QRL.
+ *
+ * NOTE: Synchronous QRLs functions can't close over any variables, including exports.
+ *
+ * @param fn - Function to extract.
+ * @returns
+ * @alpha
+ */
+export const $$ = <T extends Function>(fn: T): SyncQRL<T> => {
+  if (!qRuntimeQrl && qDev) {
+    throw new Error(
+      'Optimizer should replace all usages of $$() with some special syntax. If you need to create a QRL manually, use inlinedSyncQrl() instead.'
+    );
+  }
+  if (qDev) {
+    // To make sure that in dev mode we don't accidentally capture context in `$$()` we serialize and deserialize the function.
+    // eslint-disable-next-line no-new-func
+    fn = new Function('return ' + fn.toString())() as any;
+  }
+
+  return createQRL<T>('', SYNC_QRL, fn, null, null, null, null) as any;
+};
+
+/**
+ * Extract function into a synchronously loadable QRL.
+ *
+ * NOTE: Synchronous QRLs functions can't close over any variables, including exports.
+ *
+ * @param fn - Extracted function
+ * @param serializedFn - Serialized function in string form.
+ * @returns
+ * @alpha
+ */
+export const $Qrl = function <TYPE extends Function>(
+  fn: TYPE,
+  serializedFn?: string
+): SyncQRL<TYPE> {
+  if (serializedFn === undefined) {
+    serializedFn = fn.toString();
+  }
+  return createQRL<TYPE>('', SYNC_QRL, fn, null, null, null, null) as any;
+};
