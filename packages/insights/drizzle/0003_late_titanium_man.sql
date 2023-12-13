@@ -1,1 +1,0 @@
-ALTER TABLE errors ADD `timestamp` integer NOT NULL;

@@ -12,10 +12,10 @@ export default component$(() => {
         <meta charSet="utf-8" />
         <link rel="manifest" href="/manifest.json" />
         <RouterHead />
-        <Insights
-          publicApiKey={import.meta.env.PUBLIC_QWIK_INSIGHTS_KEY}
-          postUrl="/api/v1/${publicApiKey}/post/"
-        />
+        {/*<Insights*/}
+        {/*  publicApiKey={import.meta.env.PUBLIC_QWIK_INSIGHTS_KEY}*/}
+        {/*  postUrl="/api/v1/${publicApiKey}/post/"*/}
+        {/*/>*/}
       </head>
       <body lang="en">
         <RouterOutlet />
