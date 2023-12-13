@@ -54,7 +54,7 @@
     "db.migrate": "node scripts/db.migrate.cjs",
     "db.migrate.generate": "./node_modules/.bin/drizzle-kit generate:sqlite --schema='src/db/schema.ts'",
     "db.studio": "./node_modules/.bin/drizzle-kit studio --verbose",
-    "deploy": "netlify deploy --build",
+    "deploy": "netlify deploy --build --prod",
     "dev": "vite --mode ssr",
     "dev.debug": "node --inspect-brk ./node_modules/vite/bin/vite.js --mode ssr --force",
     "fmt": "prettier --write .",

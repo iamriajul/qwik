@@ -1,1 +1,0 @@
-ALTER TABLE symbols ADD `load_delay_ms` integer NOT NULL;
