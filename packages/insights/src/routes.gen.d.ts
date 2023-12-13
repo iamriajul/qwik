@@ -4,6 +4,8 @@
 
 export type AppRoutes =
   | "/"
+  | "/(internal)/health/"
+  | "/(internal)/version/"
   | "/api/v1/[publicApiKey]/bundles/"
   | "/api/v1/[publicApiKey]/bundles/strategy/"
   | "/api/v1/[publicApiKey]/post/"
@@ -28,6 +30,8 @@ export type AppRoutes =
 
 export interface AppRouteMap {
   "/": {};
+  "/(internal)/health/": {};
+  "/(internal)/version/": {};
   "/api/v1/[publicApiKey]/bundles/": { publicApiKey: string };
   "/api/v1/[publicApiKey]/bundles/strategy/": { publicApiKey: string };
   "/api/v1/[publicApiKey]/post/": { publicApiKey: string };
@@ -56,6 +60,8 @@ export interface AppRouteMap {
 
 export interface AppRouteParamsFunction {
   (route: "/", params?: {}): string;
+  (route: "/(internal)/health/", params?: {}): string;
+  (route: "/(internal)/version/", params?: {}): string;
   (
     route: "/api/v1/[publicApiKey]/bundles/",
     params: { publicApiKey: string },
@@ -126,6 +132,8 @@ export interface AppRouteParamsFunction {
 
 export type AppLinkProps =
   | { route: "/" }
+  | { route: "/(internal)/health/" }
+  | { route: "/(internal)/version/" }
   | { route: "/api/v1/[publicApiKey]/bundles/"; "param:publicApiKey": string }
   | {
       route: "/api/v1/[publicApiKey]/bundles/strategy/";
