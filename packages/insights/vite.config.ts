@@ -7,9 +7,6 @@ import { macroPlugin } from '@builder.io/vite-plugin-macro';
 
 export default defineConfig(async () => {
   return {
-    ssr: {
-      external: ["@libsql/client"],
-    },
     plugins: [
       macroPlugin({ preset: 'pandacss' }),
       qwikCity(),
@@ -29,7 +26,7 @@ export default defineConfig(async () => {
       },
     },
     optimizeDeps: {
-      include: ['@auth/core'],
+      include: ['@auth/core', '@libsql/client'],
     },
   };
 });
