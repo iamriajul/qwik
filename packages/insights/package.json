@@ -35,6 +35,7 @@
     "tailwindcss": "3.3.3",
     "typescript": "5.2.2",
     "undici": "^5.26.0",
+    "vercel": "^29.1.1",
     "vite": "^5.0.0",
     "vite-tsconfig-paths": "^4.2.1",
     "vitest": "^0.34.6"
@@ -48,13 +49,13 @@
     "build.ci": "(cd ../qwik-labs && pnpm run build) && qwik build",
     "build.client": "vite build",
     "build.preview": "vite build --ssr src/entry.preview.tsx",
-    "build.server": "vite build -c adapters/netlify-edge/vite.config.ts",
+    "build.server": "vite build -c adapters/vercel-edge/vite.config.ts",
     "build.types": "tsc --incremental --noEmit",
     "db.local": "turso dev --db-file ./tmp/local.db",
     "db.migrate": "node scripts/db.migrate.cjs",
     "db.migrate.generate": "./node_modules/.bin/drizzle-kit generate:sqlite --schema='src/db/schema.ts'",
     "db.studio": "./node_modules/.bin/drizzle-kit studio --verbose",
-    "deploy": "netlify deploy --build --prod",
+    "deploy": "vercel deploy",
     "dev": "vite --mode ssr",
     "dev.debug": "node --inspect-brk ./node_modules/vite/bin/vite.js --mode ssr --force",
     "fmt": "prettier --write .",
@@ -63,10 +64,10 @@
     "preview": "qwik build preview && vite preview --open",
     "qManifest.post": "curl -X POST -H 'Content-Type: application/json' -d @./dist/q-manifest.json https://qwik-insights.builder.io/api/v1/221smyuj5gl/post/manifest/",
     "qManifest.post.local": "curl -X POST -H 'Content-Type: application/json' -d @./dist/q-manifest.json http://localhost:5173/api/v1/221smyuj5gl/post/manifest/",
-    "qwik": "qwik",
     "start": "vite --open --mode ssr",
     "test.cluster": "tsm src/cluster.ts",
     "test.unit": "vitest",
-    "test.watch": "vitest --watch"
+    "test.watch": "vitest --watch",
+    "qwik": "qwik"
   }
 }
