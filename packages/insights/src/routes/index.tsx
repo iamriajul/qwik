@@ -1,14 +1,8 @@
 import { component$ } from '@builder.io/qwik';
-import Button from '~/components/button';
 import Container from '~/components/container';
-import {UilAt} from "qwik-unicons";
 import Layout from '~/components/layout';
-import { useAuthSignin } from './plugin@auth';
-import {Form} from "@builder.io/qwik-city";
 
 export default component$(() => {
-  const signInAction = useAuthSignin();
-
   return (
     <Layout>
       <Container position="center" width="small">

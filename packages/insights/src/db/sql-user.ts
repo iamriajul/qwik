@@ -3,13 +3,13 @@ import { getDB } from './index';
 import { applicationTable, userApplicationMap, usersTable } from './schema';
 
 export class InsightsUser {
-  userId: number;
+  userId: string;
   email: string;
   superUser: boolean;
   applicationPublicApiKeys: string[];
 
   constructor(
-    userId: number,
+    userId: string,
     email: string,
     superUser: boolean,
     applicationPublicApiKeys: string[]
@@ -42,11 +42,16 @@ export const dbGetInsightUser = async (email: string): Promise<InsightsUser> => 
     .where(eq(usersTable.email, email))
     .all();
   if (users.length === 0) {
-    const insert = await db
+    const id = Math.random().toString(36).substring(2, 15);
+    await db
       .insert(usersTable)
-      .values({ email, superUser: false, created: new Date() })
+      .values({
+        id: id,
+        email: email,
+        superUser: false,
+      })
       .execute();
-    return new InsightsUser(Number(insert.lastInsertRowid), email, false, []);
+    return new InsightsUser(id, email, false, []);
   } else {
     return new InsightsUser(
       users[0].userId,

@@ -249,7 +249,7 @@ CREATE TABLE `symbols` (
 --> statement-breakpoint
 CREATE TABLE `userApplicationMap` (
 	`application_id` integer,
-	`user_id` integer,
+	`user_id` text,
 	FOREIGN KEY (`application_id`) REFERENCES `applications`(`id`) ON UPDATE no action ON DELETE no action,
 	FOREIGN KEY (`user_id`) REFERENCES `user`(`id`) ON UPDATE no action ON DELETE no action
 );

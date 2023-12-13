@@ -329,7 +329,7 @@ export const userApplicationMap = sqliteTable(
   'userApplicationMap',
   {
     applicationId: integer('application_id').references(() => applicationTable.id),
-    userId: integer('user_id').references(() => usersTable.id),
+    userId: text('user_id').references(() => usersTable.id),
   },
   (table) => ({
     userApplicationIndex: uniqueIndex('userApplicationIndex').on(table.applicationId, table.userId),
